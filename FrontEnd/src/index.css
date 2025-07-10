@@ -1,9 +1,0 @@
-@font-face {
-    font-family: "TWK Lausanne";
-    src: url('./fonts/400.ttf') format("truetype");
-    font-weight: normal;
-    font-style: normal;
-}
-.TWK { 
-    font-family: "TWK Lausanne", sans-serif;
-}
