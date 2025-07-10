@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.lock-circle {
+    width: 100px; /* Adjust the width and height as needed */
+    height: 100px;
+    border: 4px solid #004AAC; /* Circle border color */
+    border-radius: 50%; /* Makes it a circle */
+    display: flex; /* Centers the icon */
+    justify-content: center; /* Centers the icon */
+    align-items: center; /* Centers the icon */
+    margin: auto; /* Centers the circle in the column */
+    margin-bottom: 20px;
+}
+
+.lock-circle i {
+    color: #004AAC; /* Change icon color if needed */
+    font-size: 48px; /* Adjust icon size as needed */
+}
+
+.custom-container {
+    border: 2px solid #B5B5AF;  /* Sets the border color and thickness */
+    border-radius: 8px;  /* Adds a small rounded corner */
+    padding: 15px;  /* Adds padding inside the container */
+    
+  }
+
+.tipo-pago{
+    font-family: "TWK Lausanne";
+    font-size: 20px;
+    font-weight: 60;
+  }
+
+  .row-bottom-margin{
+    margin-bottom: 90px;
+  }
+
+  .como-pagar {
+        margin-bottom: 10px;
+        font-family: "TWK Lausanne";
+        font-weight: 100;
+        font-size: 40px !important;
+        padding-left: 10px;
+        display: flex; /* Centers the icon */
+        justify-content: center; /* Centers the icon */
+        align-items: center; /* Centers the icon */
+        margin: auto; /* Centers the circle in the column */
+  }
+
+  .pago-seguro{
+        margin-bottom: 30px;
+        font-family: "inter";
+        font-weight: 250;
+        font-size: 20px !important;
+        padding-left: 10px;
+        display: flex; /* Centers the icon */
+        justify-content: center; /* Centers the icon */
+        align-items: center; /* Centers the icon */
+        margin: auto; /* Centers the circle in the column */
+  }
+
+  .arrow-right-col {
+    display: flex;
+    justify-content: flex-end; /* Pushes the arrow icon to the far right */
+    align-items: center; /* Aligns the arrow vertically in the middle */
+    flex-grow: 1; /* Ensures the column takes up the remaining space */
+}
+
+.next{
+    font-size:30px !important;
+}
+
+.TWK-titulo-modal{
+    font-family: "TWK Lausanne", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }

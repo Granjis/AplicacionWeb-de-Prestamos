@@ -1,0 +1,1721 @@
+{
+	"info": {
+		"_postman_id": "b93ffcdc-e025-47ee-b390-fdacbd857397",
+		"name": "recurso-prestamo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40028169"
+	},
+	"item": [
+		{
+			"name": "PreRequiest",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();\r",
+									"if (response.token) {\r",
+									"    pm.globals.set(\"jwtToken\", response.token);\r",
+									"    console.log(\"Token guardado en variable de entorno:\", response.token);\r",
+									"} else {\r",
+									"    console.log(\"No se encontró el token en la respuesta\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"prestamista\",\r\n    \"password\":\"prestamista\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Recurso",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()",
+									"pm.globals.set(\"recurso_id\", data.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"   pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\": \"Cuenta Nequi\",\n    \"tipo\": \"Dinero\",\n    \"descripcion\": \"Monto de dinero que tiene disponible el prestamista en Nequi\",\n    \"valor\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/recursos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear Recurso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nombre\": \"Cuenta Nequi\",\n    \"tipo\": \"Dinero\",\n    \"descripcion\": \"Monto de dinero que tiene disponible el prestamista en Nequi\",\n    \"valor\": 100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/recursos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n\t\"nombre\": \"Cuenta Nequi\",\n    \"tipo\": \"Dinero\",\n    \"descripcion\": \"Monto de dinero que tiene disponible el prestamista en Nequi\",\n    \"valor\": 100\n}"
+						}
+					]
+				},
+				{
+					"name": "Crear Prestamo Valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()",
+									"pm.globals.set(\"prestamo_id\", data.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"   pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {   \n    \"nombre\":\"prestamo 1\",\n    \"monto\":20,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":true\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/prestamo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"prestamo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear Prestamo Valido",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\":\"funcional\",\n    \"monto\":20,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/prestamos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"prestamos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nombre\": \"funcional\",\n    \"monto\": 20,\n    \"interes\": 5,\n    \"fechainicio\": \"2024/05/01\",\n    \"fechafin\": \"2024/06/01\",\n    \"pagado\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Crear Segundo Prestamo Valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()",
+									"pm.globals.set(\"prestamo_id\", data.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"   pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"prestamo 2\",\n    \"monto\":20,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/prestamo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"prestamo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear Prestamo Valido",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\":\"prestamo 3\",\n    \"monto\":20,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/prestamos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"prestamos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nombre\": \"prestamo 3\",\n    \"monto\": 20,\n    \"interes\": 5,\n    \"fechainicio\": \"2024/05/01\",\n    \"fechafin\": \"2024/06/01\",\n    \"pagado\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Crear Prestamo Monto muy alto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()",
+									"pm.globals.set(\"prestamo_id\", data.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"   pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"funcional\",\n    \"monto\":20000000,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/prestamo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"prestamo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear Prestamo Monto muy alto",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\":\"funcional\",\n    \"monto\":20000000,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/prestamos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"prestamos"
+									]
+								}
+							},
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{   \n    \"id\": 2,\n    \"nombre\":\"funcional\",\n    \"monto\":20,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":false\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "addRecursoPrestamos Tests",
+			"item": [
+				{
+					"name": "addRecursoPrestamo Exitoso",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()",
+									"pm.globals.set(\"prestamo_id\", data.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"   pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "addRecursoPrestamo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos{{prestamo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"{{recurso_id}}",
+										"prestamos{{prestamo_id}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n\t\"nombre\": \"Cuenta Nequi\",\n    \"tipo\": \"Dinero\",\n    \"descripcion\": \"Monto de dinero que tiene disponible el prestamista en Nequi\",\n    \"valor\": 1000,\n    \"prestamos\": [\n            {\n            \"id\": 1,\n            \"monto\":20,\n            \"interes\":5,\n            \"fechainicio\":\"2024/05/01\",\n            \"fechafin\":\"2024/06/01\",\n            \"pagado\":false\n            }\n    ] \n}"
+						}
+					]
+				},
+				{
+					"name": "addRecursoPrestamo Monto excede el valor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"   pm.response.to.have.status(412);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"El monto del prestamo supera el valor del recurso disponible\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "addRecursoPrestamo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/{{prestamo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"{{recurso_id}}",
+										"prestamos",
+										"{{prestamo_id}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "addRecurso Prestamos Recurso no existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"No se encontro el recurso con el Id dado\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/666/prestamos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"666",
+								"prestamos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "addRecurso Prestamos Recurso no existe",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/666/prestamos/{{prestamo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"666",
+										"prestamos",
+										"{{prestamo_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "addRecursoPrestamo Prestamo no existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"No se encontro el prestamo con el Id dado\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/666",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos",
+								"666"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "addRecursoPrestamo Prestamo no existe",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/666",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"{{recurso_id}}",
+										"prestamos",
+										"666"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "findPrestamoByRecursoIdPretamoId",
+			"item": [
+				{
+					"name": "Busqueda exitosa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Busqueda exitosa",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/{{prestamo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"{{recurso_id}}",
+										"prestamos",
+										"{{prestamo_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n\t\"nombre\": \"Cuenta Nequi\",\n    \"tipo\": \"Dinero\",\n    \"descripcion\": \"Monto de dinero que tiene disponible el prestamista en Nequi\",\n    \"valor\": 1000,\n    \"prestamos\": [\n            {\n            \"id\": 1,\n            \"monto\":20,\n            \"interes\":5,\n            \"fechainicio\":\"2024/05/01\",\n            \"fechafin\":\"2024/06/01\",\n            \"pagado\":false\n            }\n    ] \n}"
+						}
+					]
+				},
+				{
+					"name": "Recurso no se encuentra",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"No se encontro el recurso con el Id dado\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/666/prestamos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"666",
+								"prestamos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Recurso no se encuentra",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/666/prestamos/{{prestamo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"666",
+										"prestamos",
+										"{{prestamo_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Prestamo no se encuentra",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"No se encontro el prestamo con el Id dado\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/666",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos",
+								"666"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Prestamo no se encuentra",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/666/prestamos/{{prestamo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"666",
+										"prestamos",
+										"{{prestamo_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Prestamos no asociado al Recurso",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"   pm.response.to.have.status(412);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"El prestamo con el Id dado no esta asociado al recurso\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Prestamos no asociado al Recurso",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/666/prestamos/{{prestamo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"666",
+										"prestamos",
+										"{{prestamo_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "findPrestamosByRecursoId",
+			"item": [
+				{
+					"name": "Busqueda exitosa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Busqueda exitosa",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"{{recurso_id}}",
+										"prestamos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "El recurso no existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"No se encontro el recurso con el Id dado\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/666/prestamos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"666",
+								"prestamos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "El recurso no existe",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/666/prestamos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"666",
+										"prestamos"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "associatePrestamosRecurso",
+			"item": [
+				{
+					"name": "Asociacion exitosa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n    \"id\": 1,\n    \"nombre\":\"prestamo 1\",\n    \"monto\":20,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":true\n    },\n     {\n    \"id\":2,\n    \"nombre\":\"prestamo 2\",\n    \"monto\":20,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":false\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Asociacion exitosa",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n    \"id\": 1,\n    \"nombre\":\"prestamo 1\",\n    \"monto\":20,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":false\n    },\n     {\n    \"id\":2,\n    \"nombre\":\"prestamo 2\",\n    \"monto\":20,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":false\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"{{recurso_id}}",
+										"prestamos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\":1,\n\t\"nombre\": \"Cuenta Nequi\",\n    \"tipo\": \"Dinero\",\n    \"descripcion\": \"Monto de dinero que tiene disponible el prestamista en Nequi\",\n    \"valor\": 100,\n    \"prestamos\":\n    [\n        {   \n            \"id\": 1,\n            \"nombre\":\"prestamo 1\",\n            \"monto\":20,\n            \"interes\":5,\n            \"fechainicio\":\"2024/05/01\",\n            \"fechafin\":\"2024/06/01\",\n            \"pagado\":false\n         },\n        {\n            \"id\": 2,\n            \"nombre\":\"prestamo 2\",\n            \"monto\":20,\n            \"interes\":5,\n            \"fechainicio\":\"2024/05/01\",\n            \"fechafin\":\"2024/06/01\",\n            \"pagado\":false\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "El recurso no existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"No se encontro el recurso con el Id dado\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/666/prestamos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"666",
+								"prestamos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "El recurso no existe",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/666/prestamos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"666",
+										"prestamos"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Alguno de los prestamos no existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"No se encontro alguno de los prestamos con los Id dados\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n    \"id\": 10000,\n    \"nombre\":\"prestamo 1\",\n    \"monto\":20,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":true\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Alguno de los prestamos no existe",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"{{recurso_id}}",
+										"prestamos"
+									]
+								}
+							},
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "La suma de los montos supera el valor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"   pm.response.to.have.status(412);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"Los montos prestados superan el valor del recurso disponible\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n    \"id\": 1,\n    \"nombre\":\"prestamo 1\",\n    \"monto\":20,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":true\n    },\n     {\n    \"id\":3,\n    \"nombre\":\"prestamo 2\",\n    \"monto\":20000,\n    \"interes\":5,\n    \"fechainicio\":\"2024/05/01\",\n    \"fechafin\":\"2024/06/01\",\n    \"pagado\":false\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "La suma de los montos supera el valor",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recursos",
+										"{{recurso_id}}",
+										"prestamos"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "deletePrestamoRecurso",
+			"item": [
+				{
+					"name": "Borrado exitoso del prestamo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"   pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Borrado exitoso del prestamo",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recurso/{{recurso_id}}}/prestamos/{{prestamo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recurso",
+										"{{recurso_id}}}",
+										"prestamos",
+										"{{prestamo_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "El recurso no existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"No se encontro el recurso con el Id dado\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/666/prestamos/{{prestamo_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"666",
+								"prestamos",
+								"{{prestamo_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "El recurso no existe",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recurso/666/prestamos/{{prestamo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recurso",
+										"666",
+										"prestamos",
+										"{{prestamo_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "El prestamo no existe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"No se encontro el prestamo con el Id dado\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/666",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos",
+								"666"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "El prestamo no existe",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recurso/{{recurso_id}}}/prestamos/666",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recurso",
+										"{{recurso_id}}}",
+										"prestamos",
+										"666"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "El prestamo no esta asociado al recurso",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"   pm.response.to.have.status(412);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"El prestamo con el Id dado no esta asociado al recurso\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "El prestamo no esta asociado al recurso",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recurso/{{recurso_id}}}/prestamos/{{prestamo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recurso",
+										"{{recurso_id}}}",
+										"prestamos",
+										"{{prestamo_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "El prestamo no ha sido pagado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"   pm.response.to.have.status(412);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"El prestamo con el Id dado no esta pagado\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recursos/{{recurso_id}}/prestamos/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recursos",
+								"{{recurso_id}}",
+								"prestamos",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "El prestamo no ha sido pagado",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/recurso/{{recurso_id}}}/prestamos/{{prestamo_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"recurso",
+										"{{recurso_id}}}",
+										"prestamos",
+										"{{prestamo_id}}"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwtToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "prestamoNoValido_id",
+			"value": "3",
+			"type": "default"
+		},
+		{
+			"key": "prestamo1",
+			"value": "prestamo_id"
+		}
+	]
+}

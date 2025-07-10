@@ -1,0 +1,65 @@
+.crear-prestamo{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.crear-prestamo h2{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 80px;
+}
+div.completo{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+}
+.botones{
+    display: flex;
+    justify-content: center;
+}
+
+.buttom-general {
+    background-color: #004AAC; 
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.buttom-regresar {
+    background-color: #f0f1ea;
+    color: #004AAC; 
+    padding: 10px 20px;
+    border-radius: 6rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid #004AAC; 
+    text-decoration: none;
+}
+
+.container {
+    margin-bottom: 20px; 
+  }
+
+.modal-header {
+    background-color: #f0f0f000;
+  }
+
+.modal-body {
+    background-color: #f0f0f000;
+}
+
+.modal-footer {
+    background-color: #f0f0f000;
+}
+
+.modal-title {
+    text-align: center;
+    font-size: 20px;
+  }
+
+.modal-prest {
+    border-radius: 10px;
+  }

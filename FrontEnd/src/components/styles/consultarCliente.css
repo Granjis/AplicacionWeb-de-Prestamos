@@ -1,0 +1,54 @@
+.consultar-cliente-container {
+    background-color: #F0F1EA;
+    padding: 3rem;
+    border-radius: 10px;
+    margin-top: 5rem; /* Separación con el header */
+    margin-bottom: 5rem; /* Separación con el footer */
+}
+
+.buttom-general {
+    background-color: #004AAC; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px;
+    border-radius: 6rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.buttom-general:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.img-cliente {
+    max-width: 150px;
+    border-radius: 50%; /* Hacer la imagen redonda */
+}
+
+table {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.buttom-regresar {
+    background-color: #f0f1ea; /* Fondo claro */
+    color: #004AAC; /* Texto en azul */
+    padding: 10px 20px;
+    border-radius: 6rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid #004AAC; /* Borde azul */
+    text-decoration: none; /* Quitar subrayado */
+    display: inline-block;
+}
+
+.buttom-regresar:hover {
+    background-color: #0056b3;
+    color: white;
+    border-color: #0056b3;
+}
+
+/* Clase para agregar espacio entre el botón y el footer */
+.buttom-regresar-container {
+    margin-bottom: 1rem; 
+}

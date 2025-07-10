@@ -1,0 +1,51 @@
+.filtros a{
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 100;
+    color: #004AAC;
+    border: 0.1rem solid #000000;
+    padding: 0.8rem 1.5rem;
+    display: inline-block;
+    border-radius: 6rem;
+    margin: 0 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+@media (max-width: 768px) {
+    .filtros a {
+        font-size: 1.2rem; /* Reduce el tamaño de la fuente en pantallas más pequeñas */
+        padding: 0.5rem 1rem; /* Ajuste del padding */
+    }
+}
+
+@media (max-width: 576px) {
+    .filtros a {
+        font-size: 1rem; /* Más pequeño para móviles */
+        padding: 0.4rem 0.8rem;
+        margin: 0 0.5rem;
+    }
+}
+
+.filtros a:hover{
+    background-color: #004AAC;
+    color: #FFFFFF;
+    border: 1px solid #004AAC;
+}
+
+.filtros{
+    padding: 2rem 0;
+}
+
+.card-style{
+    background-color: #FFFFFF;
+    border-radius: 2rem;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: #FFFFFF;
+}
+
+.card-style img{
+    background-color: #F2F2F7;
+    border-radius: 10rem;
+}

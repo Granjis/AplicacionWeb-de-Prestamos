@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.situacionLaboral {
+  background-color: black;
+  color: white;  /* To make the text visible */
+  border-radius: 50px;  /* Creates the ellipse effect */
+  padding: 5px 5px;  /* Adds space inside the ellipse */
+  display: inline-block;  /* Keeps the span inline and limits the width */
+}
+
+.uploadbutton{
+  width: 40px;
+  height: 35px;
+}
+
+.btn {
+  background-color: #004AAC;
+  border-radius: 20px;
+  padding: 4px 18px;
+}
+
+
+.center-vertically {  
+  display: flex;
+  justify-content: center;
+}
+
+.custom-container {
+  border: 2px solid #B5B5AF;  /* Sets the border color and thickness */
+  border-radius: 8px;  /* Adds a small rounded corner */
+  padding: 15px;  /* Adds padding inside the container */
+  
+}
+
+.custom-container-2 {
+  border: 2px solid #B5B5AF;  /* Sets the border color and thickness */
+  border-radius: 8px;  /* Adds a small rounded corner */
+  padding: 15px;  /* Adds padding inside the container */
+  margin-top: 50px;
+}
+
+.custom-container-2 span {
+  display: block; /* Ensures the title takes the full width */
+  margin-bottom: 40px; /* Adds space between the title and progress bars */
+  font-size: 25px; /* Adjust font size as needed */
+}
+
+h4 {
+  margin-bottom: 10px;
+  font-family: "TWK Lausanne";
+  text-align: start;
+}
+
+.perfil
+{
+  font-family: "Inter";
+  font-size: 40px;
+  font-weight: 100;
+  text-align: start;
+}
+.documento {
+  font-family: "Inter";
+  font-size: 18px;
+  font-weight: 300;
+  text-align: start;
+}
+
+.info-rapida{
+  font-family: "TWK Lausanne";
+  font-size: 15px;
+  font-weight: 60;
+}
+
+.info-deuda {
+  font-family: "TWK Lausanne" !important;
+  font-size: 20px !important;
+}
+
+.creditos {
+  margin-bottom: 10px;
+  font-family: "TWK Lausanne";
+  text-align: start;
+  font-weight: 100;
+  font-size: 30px !important;
+  padding-left: 10px;
+}
+
+
+.underline-link{
+  text-decoration: underline;
+  color: #004AAC;
+  cursor: pointer;
+}
+
+.custom-progress {
+  width: 100%; /* Makes the progress bar take full width */
+  height: 8px; /* Adjust the height as needed */
+  -webkit-appearance: none; /* Removes the default styling for WebKit browsers */
+  appearance: none;
+  margin-bottom: 20px;
+}
+
+.custom-progress::-webkit-progress-bar {
+  background-color: #D7D7D0; /* Progress bar background color */
+  border-radius: 8px; /* Rounds the progress bar corners */
+}
+
+.custom-progress::-webkit-progress-value {
+  background-color: #131319; /* Progress bar fill color */
+  border-radius: 8px; /* Rounds the fill as well */
+}
+
+.custom-progress::-moz-progress-bar {
+  background-color: #131319; /* Progress bar fill color for Firefox */
+  border-radius: 8px; /* Rounds the fill in Firefox */
+}
+
+.progress-details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 3px;
+}
+.progress-container {
+  margin-bottom: 30px; /* Adds space between progress bars */
+}
+.progress-details span {
+  font-size: 14px; /* Adjust font size as needed */
+}
+
+.eye-button {
+  background-color: #004AAC;
+  border-radius: 20px;
+  border-color: #004AAC;
+  width: 50px;
+  height: 35px;
+  cursor: pointer;
+  color:white;
+  text-align: center;
+}
+.edit-button {
+  background-color: #004AAC;
+  border-radius: 20px;
+  color:white;
+  padding: 5px 10px;
+}
+
+.buttom-general {
+  background-color: #004AAC; 
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+

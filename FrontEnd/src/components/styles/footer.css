@@ -1,0 +1,20 @@
+footer {
+    padding: 1rem 0;
+    background-color: #D9D9D9 !important;
+}
+
+footer .text-dark {
+    color: #343a40 !important;
+}
+
+footer .text-light {
+    color: #f8f9fa !important;
+}
+
+footer .fab {
+    margin-right: 8px; /* Espacio entre el ícono y el texto */
+}
+
+footer .bg-dark {
+    color: black;
+}

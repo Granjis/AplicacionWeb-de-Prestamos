@@ -1,0 +1,875 @@
+{
+	"info": {
+		"_postman_id": "1c4d6907-8e5e-435f-9772-6d57785cfdc7",
+		"name": "PrestamistaPrestamo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34867910"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response = pm.response.json();",
+							"pm.globals.set(\"access_token\", response.token);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"prestamista_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"John Doe\",\n    \"direccion\": \"123 Main Street\",\n    \"telefono\": \"1234567890\",\n    \"correo\": \"john.doe@example.com\",\n    \"foto\": \"https://example.com/john.jpg\",\n    \"fondosTotales\": 100000,\n    \"saldo\": 50000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a prestamo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"prestamo_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"estudios2\",\r\n    \"monto\":2000,\r\n    \"interes\":5,\r\n    \"fechainicio\":\"2024-05-01\",\r\n    \"fechafin\":\"2024-06-01\",\r\n    \"pagado\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/prestamo",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a prestamo2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"prestamo_id_2\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"estudios2\",\r\n    \"monto\":2000,\r\n    \"interes\":5,\r\n    \"fechainicio\":\"2024-05-01\",\r\n    \"fechafin\":\"2024-06-01\",\r\n    \"pagado\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/prestamo",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a prestamo to a prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/{{prestamista_id}}/prestamos/{{prestamo_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"{{prestamista_id}}",
+						"prestamos",
+						"{{prestamo_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add an invalid prestamo to a prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The prestamo with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/{{prestamista_id}}/prestamos/00000000000000000000000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"{{prestamista_id}}",
+						"prestamos",
+						"00000000000000000000000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a prestamo to an invalid prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The prestamista with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/00000000000000000000000000000000/prestamos/{{prestamo_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"00000000000000000000000000000000",
+						"prestamos",
+						"{{prestamo_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an prestamo of a prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/{{prestamista_id}}/prestamos/{{prestamo_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"{{prestamista_id}}",
+						"prestamos",
+						"{{prestamo_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an invalid prestamo of a prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The prestamo with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/{{prestamista_id}}/prestamos/00000000000000000000000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"{{prestamista_id}}",
+						"prestamos",
+						"00000000000000000000000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an prestamo of an invalid prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The prestamista with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/00000000000000000000000000000000/prestamos/{{prestamo_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"00000000000000000000000000000000",
+						"prestamos",
+						"{{prestamo_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all prestamo of a prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/{{prestamista_id}}/prestamos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"{{prestamista_id}}",
+						"prestamos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all prestamo of an invalid prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The prestamista with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/00000000000000000000000000000000/prestamos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"00000000000000000000000000000000",
+						"prestamos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update prestamo of a prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"monto\": \"3000\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/{{prestamista_id}}/prestamos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"{{prestamista_id}}",
+						"prestamos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update invalid prestamo of a prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The prestamo with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"00000000000000000000000000000000\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/{{prestamista_id}}/prestamos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"{{prestamista_id}}",
+						"prestamos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update prestamo of an invalid prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The prestamista with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"{{prestamo_id}}\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/00000000000000000000000000000000/prestamos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"00000000000000000000000000000000",
+						"prestamos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a prestamo to a prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/{{prestamista_id}}/prestamos/{{prestamo_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"{{prestamista_id}}",
+						"prestamos",
+						"{{prestamo_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an prestamo of a prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/{{prestamista_id}}/prestamos/{{prestamo_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"{{prestamista_id}}",
+						"prestamos",
+						"{{prestamo_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an prestamo of an invalid prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The prestamista with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/00000000000000000000000000000000/prestamos/{{prestamo_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"00000000000000000000000000000000",
+						"prestamos",
+						"{{prestamo_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an invalid prestamo of a prestamista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.message).to.eql(\"The prestamo with the given id was not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/prestamistas/{{prestamista_id}}/prestamos/00000000000000000000000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"prestamistas",
+						"{{prestamista_id}}",
+						"prestamos",
+						"00000000000000000000000000000000"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
